@@ -104,12 +104,6 @@ body.is-loading { overflow: hidden; }
   pointer-events: none;
 }
 .hdr > * { pointer-events: auto; }
-.hdr__left { display: flex; align-items: center; gap: clamp(28px, 3vw, 52px); }
-.hdr__nav { display: flex; gap: 22px; }
-.hdr__nav a { position: relative; padding: 4px 0; font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(238, 242, 248, .5); transition: color .3s; }
-.hdr__nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
-.hdr__nav a:hover { color: var(--fg); }
-.hdr__nav a:hover::after { transform: scaleX(1); }
 .hdr__brand { display: flex; flex-direction: column; line-height: .8; text-transform: uppercase; }
 .hdr__brand .alt { font-size: 19px; letter-spacing: -.04em; line-height: 1; }
 .hdr__brand .sans { font: 700 22px/.9 var(--display); letter-spacing: .01em; }
@@ -146,8 +140,8 @@ body.is-loading { overflow: hidden; }
 .is-waking .lights { visibility: visible; animation: lights-on .6s linear forwards; }
 @keyframes lights-off { 0% { opacity: 0; } 15% { opacity: .8; } 25% { opacity: .3; } 40% { opacity: .9; } 55% { opacity: .55; } 100% { opacity: .97; } }
 @keyframes lights-on { 0% { opacity: .97; } 20% { opacity: .35; } 32% { opacity: .85; } 50% { opacity: .15; } 100% { opacity: 0; } }
-.hdr__left, .hdr__right { transition: opacity .5s var(--ease); }
-.is-off .hdr__left, .is-off .hdr__right { opacity: .05; pointer-events: none; }
+.hdr__brand, .hdr__right { transition: opacity .5s var(--ease); }
+.is-off .hdr__brand, .is-off .hdr__right { opacity: .05; pointer-events: none; }
 .is-off .hdr__mark { animation: standby 2.6s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(255, 255, 255, .9)) drop-shadow(0 0 18px rgba(255, 255, 255, .45)); }
 @keyframes standby { 50% { opacity: .5; } }
 
@@ -428,9 +422,6 @@ button.xrow:hover .xrow__a { background: var(--fg); color: var(--bg); transform:
 .is-menu .rail, .is-loading .rail { opacity: 0; }
 
 /* responsive */
-@media (max-width: 1180px) {
-  .hdr__nav { display: none; }
-}
 @media (max-width: 1100px) {
   .hero__card { display: none; }
   .org-grid { grid-template-columns: repeat(2, 1fr); }
