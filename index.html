@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamza Rashid | The Circuit Breaker</title>
+<meta name="description" content="Hamza Rashid, Electrical Engineering student at the University of Georgia. Embedded systems, hardware design, computer vision and robotics.">
+<meta name="theme-color" content="#070F24">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23EEF2F8'/%3E%3Ctext x='32' y='42' font-family='Arial Black,Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%230B1733'%3EHR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css?v=efdcad25">
+</head>
+<body class="is-loading">
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__mark">
+    <svg viewBox="0 0 64 64" class="pwr"><path d="M20.5 17.5a20 20 0 1 0 23 0" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M32 8v22" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+  </div>
+  <div class="loader__bar"><i id="loaderBar"></i></div>
+</div>
+
+<div class="lights" aria-hidden="true"></div>
+
+<header class="hdr" id="hdr">
+  <div class="hdr__left">
+    <a class="hdr__brand" href="#top" data-scroll aria-label="Hamza Rashid, back to top">
+      <span class="alt">Hamza</span><span class="sans">Rashid</span>
+    </a>
+    <nav class="hdr__nav" aria-label="Sections">
+      <a href="#about" data-scroll>About</a>
+      <a href="#projects" data-scroll>Projects</a>
+      <a href="#experience" data-scroll>Experience</a>
+      <a href="#leadership" data-scroll>Leadership</a>
+      <a href="#contact" data-scroll>Contact</a>
+    </nav>
+  </div>
+  <button class="hdr__mark" id="powerBtn" type="button" aria-label="Turn the lights off" aria-pressed="false">
+    <svg viewBox="0 0 64 64"><path d="M20.5 17.5a20 20 0 1 0 23 0" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/><path d="M32 8v22" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/></svg>
+  </button>
+  <div class="hdr__right">
+    <a class="pill pill--solid" href="assets/hamza-rashid-resume.pdf" download="Hamza_Rashid_Resume.pdf">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Resume</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="pcb pcb--menu"></div><div class="pads pads--dark"></div>
+  <nav class="menu__links" aria-label="Main">
+    <a href="#about" data-scroll><span class="menu__n">01</span><span class="roll"><span>About</span><span class="alt">About</span></span></a>
+    <a href="#projects" data-scroll><span class="menu__n">02</span><span class="roll"><span>Projects</span><span class="alt">Projects</span></span></a>
+    <a href="#experience" data-scroll><span class="menu__n">03</span><span class="roll"><span>Experience</span><span class="alt">Experience</span></span></a>
+    <a href="#leadership" data-scroll><span class="menu__n">04</span><span class="roll"><span>Leadership</span><span class="alt">Leadership</span></span></a>
+    <a href="#contact" data-scroll><span class="menu__n">05</span><span class="roll"><span>Contact</span><span class="alt">Contact</span></span></a>
+  </nav>
+  <div class="menu__foot">
+    <a href="mailto:hamza.rashid7007@gmail.com">hamza.rashid7007@gmail.com</a>
+    <a href="https://www.linkedin.com/in/rashid-hamza/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <span>Athens, GA</span>
+  </div>
+</div>
+
+<nav class="rail" id="rail" aria-label="Sections"></nav>
+
+<main id="top">
+
+  <section class="hero" id="hero" aria-label="Introduction">
+    <div class="pcb pcb--dark"></div><div class="pads pads--dark"></div>
+    <div class="hero__rows" id="heroRows" aria-hidden="true"></div>
+    <div class="hero__inner" id="heroInner">
+      <canvas class="hero__gl" id="heroGL" aria-hidden="true"></canvas>
+      <div class="hero__static" aria-hidden="true"><div class="pcb"></div><div class="pads"></div></div>
+      <img class="hero__fallback" src="assets/headshot.webp" alt="Portrait of Hamza Rashid">
+    </div>
+    <div class="sigwrap hero__sig" id="heroSig"><div class="sig"></div></div>
+    <div class="hero__ui" id="heroUi">
+      <h1 class="hero__name" data-split>
+        <span class="alt">Hamza</span>
+        <span class="sans">Rashid</span>
+      </h1>
+      <p class="hero__role" data-fade>Electrical Engineering<br>University of Georgia, Class of 2029</p>
+      <div class="hero__card" data-fade>
+        <div class="hero__card-top"><span>Now</span><svg class="scope" viewBox="0 0 56 14" aria-hidden="true"><path d="M-24 7q3-7 6 0t6 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0"/></svg></div>
+        <div class="now">
+          <span class="now__logo is-dark"><img src="assets/logos/uga-engineering.png" alt=""></span>
+          <div><b>Undergraduate Research Assistant</b><span>AI in Engineering · UGA Cultivate Lab</span><small>Oct 2026 - Present</small></div>
+        </div>
+        <div class="now">
+          <span class="now__logo"><img src="assets/logos/uga-ieee.png" alt=""></span>
+          <div><b>Building AgriGuard</b><span>IEEE First-Year Council</span><small>Sept 2026 - Present</small></div>
+        </div>
+        <div class="now">
+          <span class="now__logo"><img src="assets/logos/schoolhouse.png" alt=""></span>
+          <div><b>SAT Tutor</b><span>Schoolhouse.world</span><small>2025 - Present</small></div>
+        </div>
+      </div>
+      <div class="hero__scroll" data-fade><span>Scroll</span><i></i></div>
+    </div>
+  </section>
+
+  <section class="about-sec" id="about" aria-label="About">
+    <div class="pcb pcb--dark"></div><div class="pads pads--dark"></div>
+    <div class="about">
+      <h2 class="h-big about__title" data-split><span>About</span> <em>me</em></h2>
+      <div class="about__body">
+        <p data-reveal>I’m an Electrical Engineering student at the University of Georgia interested in designing hardware and embedded systems that combine electronics, sensing, and intelligent control.</p>
+        <p data-reveal>My work spans circuit design, microcontrollers, sensors, embedded programming, Python, computer vision, and robotics. I’m seeking opportunities in electrical engineering, embedded systems, hardware design, robotics, and electronics.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery" aria-label="Photos">
+    <div class="pcb"></div><div class="pads"></div>
+    <div class="gallery__inner" id="galleryInner"></div>
+  </section>
+
+  <section class="work" id="projects" aria-label="Projects">
+    <div class="pcb"></div><div class="pads"></div>
+    <div class="work__track" id="workTrack">
+      <div class="work__intro">
+        <h2 class="h-big" data-split><span>Projects</span></h2>
+      </div>
+    </div>
+    <div class="work__bar" aria-hidden="true"><i id="workBar"></i></div>
+  </section>
+
+  <section class="xp" id="experience" aria-label="Experience and education">
+    <div class="pcb"></div><div class="pads"></div>
+    <div class="sec-head">
+      <h2 class="h-big" data-split><span>Experience</span> <em>&amp; education</em></h2>
+    </div>
+    <div class="xp-group"><div class="label">Work</div><div id="xpWork"></div></div>
+    <div class="xp-group"><div class="label">Education</div><div id="xpEdu"></div></div>
+    <div class="xp-group"><div class="label">Certifications</div><div id="xpCert"></div></div>
+  </section>
+
+  <section class="leadership" id="leadership" aria-label="Leadership">
+    <div class="sec-head">
+      <h2 class="h-big" data-split><span>Leadership</span> <em>&amp; community</em></h2>
+    </div>
+    <div class="org-grid" id="orgGrid"></div>
+  </section>
+
+  <div class="band" aria-hidden="true"><div class="band__row" id="band"></div></div>
+
+  <section class="contact" id="contact" aria-label="Contact">
+    <div class="contact__panel">
+      <div class="pcb pcb--dark"></div><div class="pads pads--dark"></div>
+      <div class="sigwrap contact__sig" id="footSig"><div class="sig"></div></div>
+      <h2 class="contact__title" data-split><span>Get in</span> <em>touch.</em></h2>
+      <p class="contact__p" data-reveal>Open to opportunities in electrical engineering, embedded systems, hardware design, robotics, and electronics.</p>
+      <div class="contact__btns">
+        <a class="btn btn--solid" href="mailto:hamza.rashid7007@gmail.com"><span>Email</span><i>↗</i></a>
+        <a class="btn" href="https://www.linkedin.com/in/rashid-hamza/" target="_blank" rel="noopener"><span>LinkedIn</span><i>↗</i></a>
+        <a class="btn" href="assets/hamza-rashid-resume.pdf" download="Hamza_Rashid_Resume.pdf"><span>Resume</span><i>↓</i></a>
+      </div>
+      <div class="contact__mail"><a href="mailto:hamza.rashid7007@gmail.com">hamza.rashid7007@gmail.com</a></div>
+      <div class="foot">
+        <span>© 2026 Hamza Rashid</span>
+        <span>Athens, GA</span>
+        <a href="#top" data-scroll>Back to top ↑</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer__bg" id="drawerBg"></div>
+  <aside class="drawer__panel" id="drawerPanel" role="dialog" aria-modal="true" aria-labelledby="dTitle" data-lenis-prevent>
+    <button class="drawer__close" id="drawerClose" aria-label="Close"><span></span><span></span></button>
+    <div class="label" id="dKicker"></div>
+    <h3 class="drawer__title" id="dTitle"></h3>
+    <p class="drawer__meta" id="dMeta"></p>
+    <div class="drawer__links" id="dLinks"></div>
+    <div class="drawer__media" id="dMedia"></div>
+    <ul class="drawer__list" id="dList"></ul>
+    <p class="drawer__tags" id="dTags"></p>
+  </aside>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/hero.js?v=02451d22"></script>
+<script src="js/main.js?v=b02638d4"></script>
+</body>
+</html>
