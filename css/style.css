@@ -378,8 +378,7 @@ button.xrow:hover .xrow__a { background: var(--fg); color: var(--bg); transform:
 .contact__title { font: 700 clamp(50px, 9.2vw, 168px)/.86 var(--display); text-transform: uppercase; letter-spacing: -.02em; }
 .contact__title > span, .contact__title > em { display: block; }
 .contact__title em { font: 300 .92em/.95 var(--alt); font-style: normal; text-transform: none; letter-spacing: -.07em; }
-.contact__p { max-width: 46ch; margin: 30px auto 0; font-size: 18px; color: rgba(238, 242, 248, .75); }
-.contact__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 36px; }
+.contact__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 44px; }
 .contact__mail { margin-top: 13vh; }
 .contact__mail a { font: 300 clamp(20px, 3.6vw, 60px)/1.1 var(--alt); letter-spacing: -.05em; border-bottom: 1px solid rgba(238, 242, 248, .25); transition: border-color .4s; overflow-wrap: anywhere; }
 .contact__mail a:hover { border-color: var(--fg); }
