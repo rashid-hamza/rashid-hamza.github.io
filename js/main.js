@@ -29,7 +29,7 @@
       skills: ['Autodesk Fusion 360', 'Computer-Aided Design (CAD)', 'Pneumatic systems', 'Mechanism design'],
       sum: 'Two-stage pneumatic seat that retracts the driver’s legs, then lifts the seat, for safer entry and exit by drivers with limited lower-body mobility.',
       more: ['frederic-sausset'],
-      imgs: ['driveable-team', 'driveable-frame', 'driveable-seat', 'driveable-piston', 'driveable-section-view', 'driveable-leg-cradle', 'driveable-seat-lift', 'driveable-piston-wireframe', 'driveable-logo'],
+      imgs: ['driveable-frame', 'driveable-seat', 'driveable-piston', 'driveable-section-view', 'driveable-leg-cradle', 'driveable-seat-lift', 'driveable-piston-wireframe', 'driveable-logo', 'driveable-team'],
       links: [['Watch the video', 'https://www.youtube.com/watch?v=coxjNwQhH2g']],
       bullets: [
         'Designed a two-stage pneumatic racing seat system in Autodesk Fusion 360 during a 36-hour CADathon, improving vehicle accessibility for drivers with limited lower-body mobility.',
@@ -43,7 +43,7 @@
       org: 'KSU Fintech Hackathon', loc: 'Kennesaw, GA', date: 'Mar 2026', place: '2nd of 40 teams', team: 'Team of 3',
       skills: ['Python', 'Flask', 'Pandas', 'OpenCV', 'DeepFace', 'Arya.ai ID API'],
       sum: 'Proof-of-concept platform that pairs e-wallet data with government ID verification to assess credit access for underbanked users in Egypt.',
-      imgs: ['credit-scoring-award', 'credit-scoring-hackathon', 'credit-scoring-group', 'credit-scoring-app', 'credit-scoring-logo'],
+      imgs: ['credit-scoring-app', 'credit-scoring-logo', 'credit-scoring-award', 'credit-scoring-hackathon', 'credit-scoring-group'],
       bullets: [
         'Placed 2nd of 40 teams at a Kennesaw State University Fintech Hackathon developing a proof-of-concept fintech platform using Python, Flask, and Pandas to pair e-wallet data with secure government ID verification for assessing credit access among historically underbanked users in Egypt.',
         'Integrated the live Egypt National ID API from Arya.ai for identity verification and used OpenCV with DeepFace for facial matching against the ID photo.',
