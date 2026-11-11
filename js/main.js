@@ -175,7 +175,7 @@
     { quote: 'Scientists study the world as it is; engineers create the world that <em>has never been.</em>', by: 'Theodore von Kármán', x: 42, y: 5, w: 22, s: -.08 },
     { img: 'vex-arena', cap: ['VEX Robotics · Spin Up', '2022'], x: 70, y: 2, w: 22, ar: 1.48, s: .2, mono: true },
     { img: 'pathway-fence', cap: ['STEAMIFY · 1st place', 'Mar 2022'], x: 9, y: 24, w: 30, ar: 1.43, s: -.1, cls: 'm-wide' },
-    { img: 'future-problem-solving-team', cap: ['Future Problem Solving', '2019'], x: 50, y: 25, w: 28, ar: 1.33, s: .16 },
+    { img: 'ieee-first-year-council', cap: ['IEEE First-Year Council', '2026'], x: 50, y: 25, w: 29, ar: 1.465, s: .16 },
     { img: 'credit-scoring-hackathon', cap: ['Building Mezan', 'KSU · 2026'], x: 3, y: 46, w: 25, ar: 2.17, s: .08, mono: true },
     { img: 'driveable-team', cap: ['UGAHacks CADathon', 'Oct 2026'], x: 33, y: 47, w: 25, ar: 1.5, s: -.12 },
     { img: 'pathway-concrete', cap: ['Recycled-tray concrete', '2022'], x: 66, y: 46, w: 22, ar: 1.43, s: .18, mono: true },
