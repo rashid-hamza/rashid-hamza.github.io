@@ -81,7 +81,7 @@
       org: 'VEX Robotics · Technology Student Association', loc: 'Martinez, GA', date: 'Fall 2022', place: '2nd at Georgia state',
       skills: ['VEXcode', 'Closed-loop RPM control', 'Quadrature encoder', 'Motor wiring', 'VEX Motor Controller 29'],
       sum: 'Flywheel launcher subsystem for a disc-golf robot, using encoder feedback for consistent long-range shots.',
-      imgs: ['vex-arena', 'vex-spin-up'],
+      imgs: ['vex-launcher-robot', 'vex-arena', 'vex-spin-up'],
       bullets: [
         'Designed and wired a disc-golf robot’s flywheel launcher subsystem, driving 2 393 motors through VEX Motor Controller 29s from a 7.2V NiMH battery pack to generate consistent long-range disc launch velocity and accurate, repeatable launches.',
         'Programmed flywheel speed control in VEXcode using a quadrature shaft encoder for closed-loop RPM feedback, reducing shot-distance variance and contributing to a 2nd-place finish at the Georgia state competition against teams from across the state of Georgia.'
