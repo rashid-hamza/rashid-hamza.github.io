@@ -13,7 +13,7 @@
       skills: ['Raspberry Pi', 'OpenCV', 'Computer vision', 'Servo control', 'I2C / PWM', 'Time-of-flight sensing', 'GPIO relay control'],
       sum: 'Raspberry Pi and OpenCV system that detects pests, aims a pan-and-tilt nozzle, ranges the target and fires a short water burst.',
       next: 'UGA Fabricate · $10K startup competition',
-      imgs: ['agriguard-closed', 'agriguard-raised'], fit: 'contain',
+      imgs: ['agriguard-closed', 'agriguard-raised', 'agriguard-motor-circuit'], fit: 'contain',
       bullets: [
         'Collaborating in a team of 4 as a part of UGA IEEE’s First Year Council to develop AgriGuard, an autonomous pest-deterrent system using a Raspberry Pi and OpenCV vision pipeline targeting 15 FPS and 85% detection precision under controlled lighting.',
         'The system drives 2 pan-and-tilt servos through an I2C PWM controller to align the spray nozzle within 5 degrees of each detected target, keeping aim accurate and repeatable across the camera’s entire field of view.',
