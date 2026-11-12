@@ -401,12 +401,20 @@ button.xrow:hover .xrow__a { background: var(--fg); color: var(--bg); transform:
 .drawer__media { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 24px; }
 .drawer__media img { width: 100%; aspect-ratio: 1.45; object-fit: cover; border-radius: 8px; }
 .drawer__media img:first-child { grid-column: 1 / -1; aspect-ratio: 1.8; }
+.drawer__media img:last-child:nth-child(even) { grid-column: 1 / -1; }
 .drawer__media img.is-render { object-fit: contain; background: #16284B; }
 .drawer__list { margin-top: 26px; display: grid; gap: 14px; counter-reset: b; }
 .drawer__list li { position: relative; padding-left: 40px; font-size: 16px; line-height: 1.55; color: rgba(238, 242, 248, .86); counter-increment: b; }
 .drawer__list li::before { content: counter(b, decimal-leading-zero); position: absolute; left: 0; top: 3px; font: 500 11px/1 var(--mono); color: rgba(238, 242, 248, .5); }
 .drawer__list b, .proj__sum b, .org__p b { font-weight: 600; color: #fff; }
 .drawer__list a { border-bottom: 1px solid rgba(238, 242, 248, .5); }
+.drawer__parts { margin-top: 32px; }
+.drawer__parts:empty { display: none; }
+.drawer__parts .label { margin-bottom: 8px; color: rgba(238, 242, 248, .6); }
+.drawer__parts dl > div { padding: 14px 0; border-top: 1px solid var(--line); }
+.drawer__parts dt { font: 700 15px/1.25 var(--display); letter-spacing: .01em; color: #fff; }
+.drawer__parts dd { margin-top: 6px; font-size: 15px; line-height: 1.55; color: rgba(238, 242, 248, .8); }
+.drawer__parts dd b { font-weight: 600; color: #fff; }
 .drawer__tags { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); font: 400 12.5px/1.6 var(--mono); color: rgba(238, 242, 248, .62); }
 
 /* rail */
