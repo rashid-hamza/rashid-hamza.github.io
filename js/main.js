@@ -43,8 +43,8 @@
       org: 'KSU Fintech Hackathon', loc: 'Kennesaw, GA', date: 'Mar 2026', place: '2nd of 40 teams', team: 'Team of 3',
       skills: ['Python', 'Flask', 'Pandas', 'OpenCV', 'DeepFace', 'Arya.ai ID API'],
       sum: 'Proof-of-concept platform that pairs e-wallet data with government ID verification to assess credit access for underbanked users in Egypt.',
-      imgs: ['credit-scoring-app', 'credit-scoring-logo', 'credit-scoring-award', 'credit-scoring-hackathon', 'credit-scoring-group'],
-      whole: ['credit-scoring-app', 'credit-scoring-logo'], bg: '#131B2E',
+      imgs: ['credit-scoring-app-screen', 'credit-scoring-mezan-logo', 'credit-scoring-award', 'credit-scoring-hackathon', 'credit-scoring-group'],
+      whole: ['credit-scoring-app-screen', 'credit-scoring-mezan-logo'], bg: '#131B2E',
       bullets: [
         'Placed 2nd of 40 teams at a Kennesaw State University Fintech Hackathon developing a proof-of-concept fintech platform using Python, Flask, and Pandas to pair e-wallet data with secure government ID verification for assessing credit access among historically underbanked users in Egypt.',
         'Integrated the live Egypt National ID API from Arya.ai for identity verification and used OpenCV with DeepFace for facial matching against the ID photo.',
