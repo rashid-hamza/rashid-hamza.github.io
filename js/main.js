@@ -44,6 +44,7 @@
       skills: ['Python', 'Flask', 'Pandas', 'OpenCV', 'DeepFace', 'Arya.ai ID API'],
       sum: 'Proof-of-concept platform that pairs e-wallet data with government ID verification to assess credit access for underbanked users in Egypt.',
       imgs: ['credit-scoring-app', 'credit-scoring-logo', 'credit-scoring-award', 'credit-scoring-hackathon', 'credit-scoring-group'],
+      whole: ['credit-scoring-app', 'credit-scoring-logo'], bg: '#131B2E',
       bullets: [
         'Placed 2nd of 40 teams at a Kennesaw State University Fintech Hackathon developing a proof-of-concept fintech platform using Python, Flask, and Pandas to pair e-wallet data with secure government ID verification for assessing credit access among historically underbanked users in Egypt.',
         'Integrated the live Egypt National ID API from Arya.ai for identity verification and used OpenCV with DeepFace for facial matching against the ID photo.',
@@ -250,7 +251,7 @@
   $('#workTrack').insertAdjacentHTML('beforeend', PROJECTS.map((p, i) => `
     <article class="proj" data-k="${p.k}">
       <div class="proj__media">
-        <div class="proj__reel">${p.imgs.map((n, j) => `<img class="slide${j ? '' : ' is-on'}${p.fit === 'contain' ? ' is-render' : ''}" src="${IMG(n)}" alt="${p.name}, photo ${j + 1}" ${i > 1 ? 'loading="lazy"' : ''} decoding="async">`).join('')}</div>
+        <div class="proj__reel">${p.imgs.map((n, j) => `<img class="slide${j ? '' : ' is-on'}${p.fit === 'contain' || (p.whole || []).includes(n) ? ' is-render' : ''}"${(p.whole || []).includes(n) ? ` style="background:${p.bg}"` : ''} src="${IMG(n)}" alt="${p.name}, photo ${j + 1}" ${i > 1 ? 'loading="lazy"' : ''} decoding="async">`).join('')}</div>
         <span class="proj__num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
         ${p.imgs.length > 1 ? `<div class="proj__dots" aria-hidden="true">${p.imgs.map((_, j) => `<i class="${j ? '' : 'is-on'}"></i>`).join('')}</div>
         <div class="proj__nav"><button class="prev" aria-label="Previous photo"><svg viewBox="0 0 16 16"><path d="M13 8H3m0 0 4.5-4.5M3 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="next" aria-label="Next photo">${ARROW}</button></div>` : ''}
@@ -531,7 +532,7 @@
   const DETAILS = {};
   PROJECTS.forEach(p => DETAILS[p.k] = {
     kicker: p.place ? 'Project · ' + p.place : 'Project', title: p.title, meta: [p.org, p.loc, p.date, p.team].filter(Boolean).join(' · '),
-    bullets: p.bullets, parts: p.parts, circuit: p.circuit, imgs: [...p.imgs, ...(p.more || [])], fit: p.fit, links: p.links, skills: p.skills
+    bullets: p.bullets, parts: p.parts, circuit: p.circuit, imgs: [...p.imgs, ...(p.more || [])], fit: p.fit, whole: p.whole, bg: p.bg, links: p.links, skills: p.skills
   });
   WORK.forEach(r => DETAILS[r.k] = { kicker: 'Experience', title: r.t, meta: [r.o, r.p, r.d].join(' · '), bullets: r.bullets });
   EDU.forEach(r => DETAILS[r.k] = { kicker: 'Education', title: r.t, meta: [r.o, r.p, r.d].join(' · '), bullets: r.bullets });
@@ -548,7 +549,7 @@
     $('#dMeta').textContent = d.meta;
     $('#dList').innerHTML = d.bullets.map(b => `<li>${boldNums(b)}</li>`).join('');
     $('#dLinks').innerHTML = (d.links || []).map(([l, h]) => `<a class="btn btn--solid" href="${h}" target="_blank" rel="noopener"><span>${l}</span><i>↗</i></a>`).join('');
-    $('#dMedia').innerHTML = (d.imgs || []).map(n => `<img src="${IMG(n)}" alt="" loading="lazy"${d.fit === 'contain' ? ' class="is-render"' : ''}>`).join('');
+    $('#dMedia').innerHTML = (d.imgs || []).map(n => `<img src="${IMG(n)}" alt="" loading="lazy"${d.fit === 'contain' || (d.whole || []).includes(n) ? ' class="is-render"' : ''}${(d.whole || []).includes(n) ? ` style="background:${d.bg}"` : ''}>`).join('');
     const circuit = d.circuit ? `assets/photos/${d.circuit}.png` : '';
     $('#dParts').innerHTML = (circuit ? `<p class="label">Circuit</p><a class="drawer__circuit" href="${circuit}" target="_blank" rel="noopener"><img src="${circuit}" alt="Circuit diagram of tree board A" loading="lazy"></a><p class="drawer__note">Tree board A. Board B is the same circuit without D19 and R7.</p>` : '') +
       (d.parts ? '<p class="label">Parts and what they do</p><dl>' + d.parts.map(([n, r]) => `<div><dt>${n}</dt><dd>${boldNums(r)}</dd></div>`).join('') + '</dl>' : '');
