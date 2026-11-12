@@ -56,22 +56,22 @@
       org: 'Personal build', date: '2025',
       sum: 'Hand-soldered three-board LED tree where two three-transistor oscillators flash 36 LEDs in a rotating pattern under a steady top light.',
       skills: ['Through-hole soldering', 'PCB assembly', 'NPN transistor switching', 'RC timing', 'LED current limiting', 'Component polarity'],
-      imgs: ['led-tree-assembled', 'led-tree-kit'], fit: 'contain',
+      imgs: ['led-tree-assembled', 'led-tree-kit'], fit: 'contain', circuit: 'led-tree-schematic',
       bullets: [
-        'Hand-soldered a three-board 3D LED Christmas tree kit, assembling 37 LEDs, 6 S9014 NPN transistors, 13 resistors, and 6 electrolytic capacitors onto double-sided PCBs that slot together into a freestanding tree.',
-        'Built two identical three-transistor ring oscillators in which 10 kΩ base resistors and 47 µF coupling capacitors set the timing that switches three groups of six LEDs on and off in a rotating sequence.',
+        'Hand-soldered a three-board 3D LED Christmas tree kit, assembling 37 red, yellow, and green LEDs, 6 S9014 NPN transistors, 13 resistors, and 6 electrolytic capacitors onto double-sided PCBs that slot together into a freestanding tree.',
+        'Built two identical three-transistor ring oscillators in which 4.7 kΩ base resistors and 47 µF coupling capacitors set the timing that switches three groups of six LEDs on and off in a rotating sequence.',
         'Slotted the two tree boards together crosswise and mounted them on a base board with a self-locking power switch, a 3.5 mm DC jack for 5 V USB power, and a 4.5 V 3xAA battery holder.'
       ],
       parts: [
         ['S9014 NPN transistors (Q1-Q3 on each tree board)', 'Each one switches a group of six LEDs on and off. The three are wired in a ring, so a transistor turning on briefly shuts off the next one, which passes the flash around the tree.'],
-        ['47 µF electrolytic capacitors (C1-C3)', 'Link each transistor to the next one in the ring. The time a capacitor takes to recharge is how long the next transistor stays off, so these set the speed of the pattern.'],
-        ['10 kΩ base resistors (R1, R3, R5)', 'Feed a small current into each transistor’s base and recharge the capacitors. With the 47 µF capacitors they give a time constant of about 0.47 s, which sets the flash rate.'],
-        ['330 Ω, 1 kΩ and 2 kΩ resistors (R2, R4, R6)', 'Limit the current through each LED group. Each group gets a different value so the different LEDs shine at a similar brightness without overloading them or the transistors.'],
-        ['37 LEDs (D1-D18 on each board, D19 on top)', 'The lights. Each tree board holds 18 in three groups of six that share one transistor, which is what creates the chasing pattern.'],
-        ['Top LED D19 with 10 kΩ resistor R7', 'Wired straight across the power supply instead of through a transistor, so the star on top stays lit while the rest of the tree flashes.'],
-        ['Self-locking push switch (S1)', 'Turns the whole tree on and off from the base.'],
+        ['47 µF 16 V electrolytic capacitors (C1-C3)', 'Link each transistor to the next one in the ring. The time a capacitor takes to recharge is how long the next transistor stays off, so these set the speed of the pattern.'],
+        ['4.7 kΩ base resistors (R1, R3, R5)', 'Feed a small current into each transistor’s base and recharge the capacitors. With the 47 µF capacitors they give a time constant of about 0.22 s, which sets the flash rate.'],
+        ['100 Ω resistors (R2, R4, R6)', 'Each one sits between a group of six LEDs and its transistor and limits the current through the group, so neither the LEDs nor the transistor are overloaded.'],
+        ['37 LEDs (D1-D18 on each board, D19 on top)', 'Red, yellow and green 3 mm LEDs. Each tree board holds 18 in three groups of six, one color per group, and each group shares one transistor, which is what creates the chasing pattern. Board B has the colors shifted one group over from board A.'],
+        ['Top LED D19 with 4.7 kΩ resistor R7', 'A red LED on board A wired from the supply through its own resistor to ground instead of through a transistor, so the light on top stays on while the rest of the tree flashes.'],
+        ['5.8 mm self-locking push switch (S1)', 'Turns the whole tree on and off from the base.'],
         ['3.5 mm DC jack (J1) and USB cable', 'Lets the tree run from any 5 V USB port.'],
-        ['3xAA battery holder', 'Supplies 4.5 V for cordless use. It mounts under the base with two M2.5 screws and nuts.'],
+        ['3xAA battery holder', 'Supplies 4.5 V for cordless use. It mounts under the base with two 8 mm M2 screws and nuts.'],
         ['Three PCBs (A, B and C)', 'A and B are the two halves of the tree and slot together crosswise to make it 3D. C is the base that carries the power, the switch and both halves.']
       ]
     },
@@ -531,7 +531,7 @@
   const DETAILS = {};
   PROJECTS.forEach(p => DETAILS[p.k] = {
     kicker: p.place ? 'Project · ' + p.place : 'Project', title: p.title, meta: [p.org, p.loc, p.date, p.team].filter(Boolean).join(' · '),
-    bullets: p.bullets, parts: p.parts, imgs: [...p.imgs, ...(p.more || [])], fit: p.fit, links: p.links, skills: p.skills
+    bullets: p.bullets, parts: p.parts, circuit: p.circuit, imgs: [...p.imgs, ...(p.more || [])], fit: p.fit, links: p.links, skills: p.skills
   });
   WORK.forEach(r => DETAILS[r.k] = { kicker: 'Experience', title: r.t, meta: [r.o, r.p, r.d].join(' · '), bullets: r.bullets });
   EDU.forEach(r => DETAILS[r.k] = { kicker: 'Education', title: r.t, meta: [r.o, r.p, r.d].join(' · '), bullets: r.bullets });
@@ -549,7 +549,9 @@
     $('#dList').innerHTML = d.bullets.map(b => `<li>${boldNums(b)}</li>`).join('');
     $('#dLinks').innerHTML = (d.links || []).map(([l, h]) => `<a class="btn btn--solid" href="${h}" target="_blank" rel="noopener"><span>${l}</span><i>↗</i></a>`).join('');
     $('#dMedia').innerHTML = (d.imgs || []).map(n => `<img src="${IMG(n)}" alt="" loading="lazy"${d.fit === 'contain' ? ' class="is-render"' : ''}>`).join('');
-    $('#dParts').innerHTML = d.parts ? '<p class="label">Parts and what they do</p><dl>' + d.parts.map(([n, r]) => `<div><dt>${n}</dt><dd>${boldNums(r)}</dd></div>`).join('') + '</dl>' : '';
+    const circuit = d.circuit ? `assets/photos/${d.circuit}.png` : '';
+    $('#dParts').innerHTML = (circuit ? `<p class="label">Circuit</p><a class="drawer__circuit" href="${circuit}" target="_blank" rel="noopener"><img src="${circuit}" alt="Circuit diagram of tree board A" loading="lazy"></a><p class="drawer__note">Tree board A. Board B is the same circuit without D19 and R7.</p>` : '') +
+      (d.parts ? '<p class="label">Parts and what they do</p><dl>' + d.parts.map(([n, r]) => `<div><dt>${n}</dt><dd>${boldNums(r)}</dd></div>`).join('') + '</dl>' : '');
     $('#dTags').textContent = d.skills ? 'Skills: ' + d.skills.join(' · ') : '';
     panel.scrollTop = 0;
     drawer.classList.add('is-open');
