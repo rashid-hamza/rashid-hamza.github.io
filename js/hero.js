@@ -274,7 +274,7 @@ void main(){
     let running = false, raf = 0, last = 0, time = 0, visible = true;
     const st = {
       tx: .5, ty: .55, mx: .5, my: .55, active: false, hover: 0, hoverT: 0, speed: 0,
-      parX: 0, parY: 0, reveal: 0, fade: 0, grey: 0, fx: 1, demo: false, demoT0: 0, handoff: 0, fadeUntil: 0, inside: false,
+      parX: 0, parY: 0, reveal: 0, fade: 0, grey: 0, fx: 1, demo: false, demoT0: 0, handoff: 0, fadeUntil: 0, inside: false, finger: false, lastTouch: -9,
       touch: matchMedia('(hover: none)').matches
     };
 
@@ -432,6 +432,26 @@ void main(){
       if (!st.active) { st.mx = x; st.my = y; st.active = true; }
     }, { passive: true });
     host.addEventListener('pointerleave', (e) => { if (e.pointerType !== 'touch') { st.hoverT = 0; st.active = false; st.inside = false; } });
+    const fingerAt = (t) => {
+      const r = canvas.getBoundingClientRect();
+      return [(t.clientX - r.left) / r.width, 1 - (t.clientY - r.top) / r.height];
+    };
+    host.addEventListener('touchstart', (e) => {
+      const [x, y] = fingerAt(e.touches[0]);
+      if (st.demo) { st.demo = false; st.fadeUntil = time + .9; }
+      st.tx = st.mx = x; st.ty = st.my = y;
+      st.finger = true; st.active = true; st.hoverT = 1; st.lastTouch = time;
+    }, { passive: true });
+    host.addEventListener('touchmove', (e) => {
+      const [x, y] = fingerAt(e.touches[0]);
+      st.tx = x; st.ty = y; st.lastTouch = time;
+    }, { passive: true });
+    const lift = (e) => {
+      if (e.touches.length) return;
+      st.finger = false; st.active = false; st.hoverT = 0; st.lastTouch = time;
+    };
+    host.addEventListener('touchend', lift, { passive: true });
+    host.addEventListener('touchcancel', lift, { passive: true });
     host.addEventListener('pointerdown', (e) => {
       if (e.pointerType !== 'touch' || !sim) return;
       const [x, y] = toUv(e);
@@ -447,7 +467,7 @@ void main(){
       last = now; time += dt;
       if (!portraitTex) return;
 
-      // circle the head until the mouse moves, and wander slowly on touch screens
+      // circle the head until the mouse moves; on touch screens wander until a finger takes over
       let autoActive = false;
       if (st.demo) {
         const a = (time - st.demoT0) * 1.1 + Math.PI, r = rect[2] * .32;
@@ -455,7 +475,7 @@ void main(){
         st.ty = rect[1] + rect[3] * .59 + Math.sin(a) * r * scale[0] / scale[1] * 1.1;
         autoActive = true;
         if (!st.wasAuto) { st.mx = st.tx; st.my = st.ty; }
-      } else if (st.touch && visible) {
+      } else if (st.touch && visible && !st.finger && time - st.lastTouch > 2.5) {
         const tt = time * .42;
         st.tx = .5 + Math.sin(tt) * .2 + Math.sin(tt * 2.3) * .05;
         st.ty = rect[3] * .7 + Math.sin(tt * .77 + 1) * .13;
@@ -468,7 +488,7 @@ void main(){
         if (st.inside) { st.mx = st.tx; st.my = st.ty; st.active = true; st.hoverT = 1; }
       }
 
-      const kf = 1 - Math.pow(1 - .2, dt * 60);
+      const kf = 1 - Math.pow(1 - (st.finger ? .45 : .2), dt * 60);
       const nx = st.mx + (st.tx - st.mx) * kf, ny = st.my + (st.ty - st.my) * kf;
       const dx = nx - st.mx, dy = ny - st.my;
       const sp = Math.hypot(dx * scale[0], dy * scale[1]) / dt;
